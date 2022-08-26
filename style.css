@@ -49,12 +49,28 @@ body, html {
     font-size: 1.6em;
     text-align: center;
     background: #161616;
+    cursor: pointer;
+}
+
+.operators:hover {
+    font-size: 1.6em;
+    text-align: center;
+    background: #292929;
+    cursor: pointer;
 }
 
 .numbers {
     font-size: 2em;
     text-align: center;
     background: #101010;
+    cursor: pointer;
+}
+
+.numbers:hover {
+    font-size: 2em;
+    text-align: center;
+    background: #232323;
+    cursor: pointer;
 }
 
 .equal {
@@ -65,4 +81,16 @@ body, html {
     grid-row-start: 4;
     grid-row-end: 6;
     grid-column: 4;
+    cursor: pointer;
+}
+
+.equal:hover {
+    font-size: 3em;
+    text-align: center;
+    color: #000;
+    background: #ff278c;
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-column: 4;
+    cursor: pointer;
 }
