@@ -9,7 +9,7 @@ const equals = document.querySelector('.equal');
 
 let currentValue = null;
 let signal = false;
-
+let operationType = null;
 // EVENT LISTENERS
 
 equals.addEventListener('click', () => {
