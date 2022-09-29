@@ -1,57 +1,45 @@
-// ELEMENTS
+//Elements
 const currentOperation = document.querySelector('.current-operation');
 const previousOperation = document.querySelector('.previous-operation');
-const numbers = document.querySelectorAll('.numbers');
-const operators = document.querySelectorAll('.operators');
-const equals = document.querySelector('.equal');
+const buttons = document.querySelectorAll('button');
 
-// Variables
 
-let currentValue = null;
-let signal = false;
-let operationType = null;
-// EVENT LISTENERS
+//Event listener
+buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const value = btn.textContent;
 
-equals.addEventListener('click', () => {
-    
-})
-
-numbers.forEach ((number) => {
-    number.addEventListener('click', () => {
-        if(currentOperation.textContent.includes('.') && number.textContent == '.'){
-            return;
+        if(+value >= 0 || value == '.'){
+            if(currentOperation.textContent.includes('.') && value == '.') return;
+            appendValue(value);
+        }else {
+            operation(value);
         }
-        currentOperation.textContent += number.textContent;
     })
 })
 
-operators.forEach ((operator) => {
-    operator.addEventListener('click', () => {
-        if (operator.textContent == 'C' && !(currentOperation.textContent == '')) {
-            clearScreen();
-        }
-        if (currentOperation.textContent == '') {
-            return;
-        }
-        if(!signal){
-            valueSaving(currentOperation.textContent);
-            signal = true;
-        }
-        currentOperation.textContent = `${currentValue} ${operator.textContent} `;
-    })
-})
-
-// Value Saving
-
-function valueSaving(value) {
-    currentValue = value;
+//Append the value to the screen
+function appendValue(value) {
+    currentOperation.textContent += value;
 }
 
-// clearScreen
+//Check type of operation
+function operation(value) {
+    switch (value) {
+        case ('C'):
+            clearScreen();
+            break;
+        
+        case ('CE'):
+            
+        default:
+            break;
+    }
+}
+
+//Clear Screen
 
 function clearScreen() {
     currentOperation.textContent = '';
     previousOperation.textContent = '';
-    signal = false;
-    currentValue = null;
 }
