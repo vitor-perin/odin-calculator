@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'roboto';
 }
 
 body, html {
@@ -18,27 +19,34 @@ body, html {
 #calculator {
     display: flex;
     flex-direction: column;
-    min-width: 50vh;
+    width: 50vh;
     gap: 4px;
-    background: #333;
-    border: 4px solid #333;
+    background: #1f1f1f;
+    border: 4px solid #1f1f1f;
 }
 
 /* RESULT SCREEN */
 
 #result{
     min-height: 20vh;
-    max-width: 50vw;
-    background: #383838;
+    background: #1f1f1f;
     display: flex;
     flex-direction: column;
-    align-items: end;
-    justify-content: center;
+    justify-content: end;
+    text-align: right;
     font-size: 2em;
 }
-
+.current-operation {
+    overflow-wrap: break-word;
+    font-size: 1.4em;
+    min-height: 12vh;
+    padding: 0 6px;
+}
 .previous-operation {
+    overflow-wrap: break-word;
+    font-size: 0.6em;
     opacity: 0.4;
+    padding: 0 6px;
 }
 
 /* NUMBERS AND OPERATORS */
@@ -46,7 +54,7 @@ body, html {
 button {
     border-radius: 0;
     border-style: none;
-    background-color: #101010;
+    background-color: #060606;
     color: #F7F7F7;
     font-size: 2em;
 }
@@ -56,13 +64,16 @@ button {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: repeat(5, minmax(0, 1fr));
     min-height: 53vh;
-    background-color: #B7B7B7;
-    gap: 1px;
+    background-color: #1f1f1f;
+    gap: 2px;
 }
 
 button:hover {
     background: #292929;
-    border: 1px solid #f7f7f7;
+}
+
+.operator {
+    background-color: #131313;
 }
 
 .zero {
@@ -74,8 +85,7 @@ button:hover {
 .equal {
     font-size: 3em;
     text-align: center;
-    color: #000;
-    background: #FF0077;
+    background: rgba(255, 0, 119, 0.4);
     grid-row-start: 4;
     grid-row-end: 6;
     grid-column: 4;
@@ -83,8 +93,7 @@ button:hover {
 }
 
 .equal:hover {
-    background: #ff278c;
-    border: 1px solid #f7f7f7;
+    background: rgba(255, 0, 119, 1);
 }
 
 .noselect {
