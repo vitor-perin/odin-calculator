@@ -36,9 +36,23 @@ function appendValue(operationValue = null, operator = null, current = null, pre
 
 //Check type of operation
 function operationCheck(operator) {
+    if (currentOperation.textContent === '' && operator !== 'C') {
+        if(previousOperation !== '') {
+            changeOperator(operator);
+        }
+        return;
+     }
+
     let operationValue;
     let previous = +previousOperation.textContent.split(' ')[0];
+    let lastOperator = previousOperation.textContent.split(' ')[1];
     let current = +currentOperation.textContent;
+
+    if (previousOperation.textContent.includes('=')) {
+        previousOperation.textContent = `${currentOperation.textContent}`;
+        currentOperation.textContent = '';
+        previous = 0;
+        }
 
     switch (operator) {
         case 'C':
@@ -64,7 +78,7 @@ function operationCheck(operator) {
             appendValue(operationValue, operator, current, previous);
             break;
         case '=':
-            
+            equalOperator(operator, lastOperator, current, previous);
             break;
         default:
             return;
@@ -80,4 +94,42 @@ function clear() {
 
 function clearCurrent() {
     currentOperation.textContent = '';
+}
+
+//Change operator
+
+function changeOperator(operator) {
+    const operators = ['/', '*', '-', '+'];
+
+    if(!operators.includes(operator)) {
+        return;
+    }
+    previousOperation.textContent = previousOperation.textContent.slice(0, -1) + operator; 
+}
+
+//Equal operator
+
+function equalOperator(operator, lastOperator, current, previous) {
+    previousOperation.textContent = `${previous} ${lastOperator} ${current} ${operator}`;
+    currentOperation.textContent = previous + current;
+    switch (lastOperator) {  
+        case '/':
+            operationValue = previous / current;
+            currentOperation.textContent = previous / current;
+            break;
+        case '*':
+            operationValue = previous * current;
+            currentOperation.textContent = previous * current;
+            break;
+        case '-':
+            operationValue = previous - current;
+            currentOperation.textContent = previous - current;
+            break;
+        case '+':
+            operationValue = previous + current;
+            currentOperation.textContent = previous + current;
+            break;
+        default:
+            return;
+    }
 }
